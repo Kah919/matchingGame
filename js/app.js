@@ -1,5 +1,5 @@
 const deck = document.querySelector('.deck');
-const card = document.querySelectorAll('.card');
+//const card = document.querySelectorAll('.card');
 const resetButton = document.querySelector('.restart');
 const moves = document.querySelector('.moves');
 const starLi = document.querySelector('.stars').querySelectorAll('i');
@@ -19,6 +19,9 @@ let counter = 0; // winning condition
 
 
 function createElement(){ // creating the new cards by appending
+	var card = document.querySelectorAll('.card'); // BECARE ABOUT THIS PART
+
+
 	for(let i = 0; i < deckList.length; i++){
 	 	//For every single element
 	 	//1.Creates Li and I
@@ -29,6 +32,8 @@ function createElement(){ // creating the new cards by appending
 	    iCard.className = 'fa' + ' ' + deckList[i]; // giving iCard a fa class and a decklist
 	    //3. append i to li
 	    liCard.appendChild(iCard); // appending the iCard to the liCard
+	    // console.log(liCard);
+	    console.log(liCard.childNode);
 	    //4. replaces li with old li
 	    deck.replaceChild(liCard, card[i]); // replaces each card with the liCard that we made
 	    addingClick(liCard); // when you click add show to liCard
@@ -87,9 +92,8 @@ function newGame(text){ // this will reset the game
 		for(let i = 0; i < starLi.length; i++){ // this will turn all the stars black again
 			starLi[i].style.color = 'black';
 		}
-		shuffle(text);
-
-
+		shuffle(deckList);
+		createElement();
 	})
 }
 
